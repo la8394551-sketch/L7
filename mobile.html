@@ -1,0 +1,873 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Combo de Instrumentos - Mobile</title>
+    
+    <!-- Meta Pixel Code -->
+    <script>
+    !function(f,b,e,v,n,t,s)
+    {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+    n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+    if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+    n.queue=[];t=b.createElement(e);t.async=!0;
+    t.src=v;s=b.getElementsByTagName(e)[0];
+    s.parentNode.insertBefore(t,s)}(window, document,'script',
+    'https://connect.facebook.net/en_US/fbevents.js');
+    fbq('init', '685253243472200');
+    fbq('track', 'PageView');
+    fbq('track', 'ViewContent');
+    </script>
+    <noscript><img height="1" width="1" style="display:none"
+    src="https://www.facebook.com/tr?id=685253243472200&ev=PageView&noscript=1"
+    /></noscript>
+    <!-- End Meta Pixel Code -->
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Outfit:wght@700;800&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --bg-main: #fcfcfc;
+            --bg-secondary: #f3f4f6;
+            --text-dark: #1f2937;
+            --text-light: #6b7280;
+            --primary-highlight: #FFAE00;
+            --cta-main: #BA0000;
+            --cta-hover: #990000;
+            --card-shadow: 0 10px 40px rgba(0, 0, 0, 0.04);
+            --border-radius: 16px;
+            --max-width: 480px; /* Restrito para tamanho de celular */
+            --green-check: #10B981;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #222; /* Fundo escuro fora do container no desktop */
+            color: var(--text-dark);
+            line-height: 1.5;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        /* Container que simula tela de celular */
+        .mobile-wrapper {
+            width: 100%;
+            max-width: var(--max-width);
+            background-color: var(--bg-main);
+            min-height: 100vh;
+            position: relative;
+            box-shadow: 0 0 50px rgba(0,0,0,0.5);
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, h4 {
+            font-family: 'Outfit', sans-serif;
+            line-height: 1.2;
+        }
+
+        .container {
+            padding: 0 20px;
+        }
+
+        section {
+            padding: 50px 0;
+            position: relative;
+        }
+
+        .bg-gray {
+            background-color: var(--bg-secondary);
+        }
+
+        /* Top Bar */
+        .top-bar {
+            background-color: var(--text-dark);
+            color: white;
+            text-align: center;
+            padding: 10px 15px;
+            font-size: 0.85rem;
+            font-weight: 500;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            border-bottom: 2px solid var(--cta-main);
+        }
+
+        .highlight-marker {
+            position: relative;
+            z-index: 1;
+            white-space: nowrap;
+        }
+
+        .highlight-marker::after {
+            content: '';
+            position: absolute;
+            bottom: 4px;
+            left: -2px;
+            right: -2px;
+            height: 40%;
+            background-color: rgba(255, 174, 0, 0.4);
+            z-index: -1;
+            transform: rotate(-1deg);
+            border-radius: 4px;
+        }
+
+        /* Hero Section */
+        .hero {
+            text-align: center;
+            padding: 40px 0 30px;
+        }
+
+        .badge {
+            display: inline-block;
+            background: rgba(255, 174, 0, 0.15);
+            color: #b37a00;
+            padding: 4px 12px;
+            border-radius: 30px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            margin-bottom: 20px;
+        }
+
+        .hero h1 {
+            font-size: 2.2rem;
+            margin-bottom: 16px;
+            color: var(--text-dark);
+        }
+
+        .hero h1 span {
+            background: linear-gradient(135deg, var(--cta-main), #ff4d4d);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero p.subtitle {
+            font-size: 1.05rem;
+            color: var(--text-light);
+            margin: 0 auto 30px;
+        }
+
+        .benefits-list {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            margin: 0 auto 30px;
+            text-align: left;
+        }
+
+        .benefits-list li {
+            display: flex;
+            align-items: flex-start; /* Melhor para textos de 2 linhas no mobile */
+            font-weight: 500;
+            font-size: 0.95rem;
+            background: white;
+            padding: 14px 16px;
+            border-radius: 12px;
+            box-shadow: var(--card-shadow);
+        }
+
+        .benefits-list li svg {
+            width: 20px;
+            height: 20px;
+            flex-shrink: 0;
+            margin-right: 12px;
+            margin-top: 2px;
+            color: var(--green-check);
+        }
+
+        .hero-image {
+            max-width: 100%;
+            height: auto;
+            border-radius: 12px;
+            box-shadow: var(--card-shadow);
+            margin: 30px auto 0;
+            display: block;
+            border: 3px solid white;
+        }
+
+        /* Buttons & Animations */
+        .cta-button {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            background-color: var(--cta-main);
+            color: white;
+            font-family: 'Outfit', sans-serif;
+            font-weight: 800;
+            font-size: 1.1rem;
+            text-transform: uppercase;
+            padding: 16px 20px; /* Reduzido o padding lateral por ser 100% no mobile */
+            border-radius: 12px;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            position: relative;
+            animation: pulseCTA 2.5s infinite;
+            border: none;
+            cursor: pointer;
+            box-shadow: 0 8px 24px rgba(186, 0, 0, 0.3);
+            width: 100%;
+            text-align: center;
+        }
+
+        .cta-button svg {
+            width: 20px;
+            height: 20px;
+            margin-left: 8px;
+            transition: transform 0.3s ease;
+        }
+
+        @keyframes pulseCTA {
+            0% { transform: scale(1); box-shadow: 0 8px 16px rgba(186, 0, 0, 0.2); }
+            50% { transform: scale(1.02); box-shadow: 0 12px 24px rgba(186, 0, 0, 0.4), 0 0 15px rgba(186, 0, 0, 0.3); }
+            100% { transform: scale(1); box-shadow: 0 8px 16px rgba(186, 0, 0, 0.2); }
+        }
+
+        .security-note {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-top: 12px;
+            font-size: 0.75rem;
+            color: var(--text-light);
+            gap: 6px;
+        }
+
+        /* Pain Agitation Grid */
+        .agitation h2 {
+            text-align: center;
+            font-size: 1.8rem;
+            margin-bottom: 30px;
+        }
+
+        .grid-3 {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .pain-card {
+            background: white;
+            padding: 24px 20px;
+            border-radius: var(--border-radius);
+            box-shadow: var(--card-shadow);
+            text-align: center;
+        }
+
+        .pain-card svg {
+            width: 36px;
+            height: 36px;
+            color: var(--cta-main);
+            margin-bottom: 12px;
+        }
+
+        .pain-card h4 {
+            font-size: 1.2rem;
+            margin-bottom: 8px;
+        }
+        
+        .pain-card p {
+            font-size: 0.95rem;
+        }
+
+        .pain-conclusion {
+            text-align: center;
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-top: 30px;
+            padding: 20px;
+            background: rgba(186, 0, 0, 0.05);
+            border-radius: 12px;
+            color: var(--cta-main);
+        }
+
+        /* Social Proof / Marquee */
+        .marquee-wrapper {
+            overflow: hidden;
+            white-space: nowrap;
+            padding: 30px 0;
+            background: white;
+            border-top: 1px solid rgba(0,0,0,0.05);
+            border-bottom: 1px solid rgba(0,0,0,0.05);
+        }
+
+        .marquee-content {
+            display: inline-block;
+            animation: marquee 20s linear infinite;
+        }
+
+        .marquee-item {
+            display: inline-block;
+            padding: 16px;
+            background: var(--bg-secondary);
+            border-radius: 12px;
+            margin-right: 16px;
+            min-width: 280px;
+            white-space: normal;
+            font-size: 0.9rem;
+        }
+
+        .stars {
+            color: var(--primary-highlight);
+            margin-bottom: 6px;
+            font-size: 0.9rem;
+        }
+
+        @keyframes marquee {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+
+        /* Solution Blocks */
+        .step-block {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            gap: 12px;
+            margin-bottom: 24px;
+            background: white;
+            padding: 24px;
+            border-radius: var(--border-radius);
+            box-shadow: var(--card-shadow);
+        }
+
+        .step-number {
+            font-family: 'Outfit', sans-serif;
+            font-size: 3rem;
+            font-weight: 800;
+            color: rgba(255, 174, 0, 0.2);
+            line-height: 1;
+        }
+        
+        .step-block h3 { margin-bottom: 8px; font-size: 1.3rem; }
+        .step-block p { font-size: 0.95rem; }
+
+        /* Before vs After */
+        .comparison-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            margin-top: 30px;
+        }
+
+        .comp-card {
+            padding: 24px;
+            border-radius: var(--border-radius);
+        }
+
+        .comp-old {
+            background-color: #f8f9fa;
+            border: 2px dashed #d1d5db;
+        }
+
+        .comp-new {
+            background-color: #ecfdf5;
+            border: 2px solid var(--green-check);
+        }
+
+        .comp-card h3 {
+            margin-bottom: 16px;
+            font-size: 1.3rem;
+            text-align: center;
+        }
+
+        .comp-old h3 { color: var(--text-light); }
+        .comp-new h3 { color: #065f46; }
+
+        .comp-list { list-style: none; }
+        .comp-list li {
+            margin-bottom: 10px;
+            display: flex;
+            align-items: flex-start;
+            gap: 8px;
+            font-size: 0.95rem;
+        }
+
+        .comp-list li svg { flex-shrink: 0; margin-top: 2px;}
+
+        /* Value Stacking */
+        .modules-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+            margin-top: 30px;
+        }
+
+        .module-card {
+            background: white;
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: var(--card-shadow);
+        }
+        
+        .module-card h4 { font-size: 1.1rem; }
+
+        .module-card ul {
+            list-style: none;
+            margin-top: 12px;
+        }
+
+        .module-card ul li {
+            padding-left: 16px;
+            position: relative;
+            margin-bottom: 6px;
+            color: var(--text-light);
+            font-size: 0.9rem;
+        }
+
+        .module-card ul li::before {
+            content: "•";
+            position: absolute;
+            left: 0;
+            color: var(--primary-highlight);
+            font-weight: bold;
+        }
+
+        /* Bonus */
+        .bonus-section {
+            background-color: var(--text-dark);
+            color: white;
+        }
+
+        .bonus-card {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 174, 0, 0.3);
+            padding: 24px 20px;
+            border-radius: 16px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            gap: 16px;
+            margin-bottom: 16px;
+        }
+
+        .bonus-icon {
+            color: var(--primary-highlight);
+        }
+
+        /* Checkout/Offer */
+        .checkout {
+            text-align: center;
+            padding: 60px 0;
+        }
+
+        .checkout-box {
+            background: white;
+            padding: 30px 20px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+            border: 2px solid #f3f4f6;
+        }
+
+        .old-price {
+            text-decoration: line-through;
+            color: var(--text-light);
+            font-size: 1.2rem;
+            margin-bottom: 4px;
+            display: block;
+        }
+
+        .new-price {
+            font-family: 'Outfit', sans-serif;
+            font-size: 4rem;
+            font-weight: 800;
+            color: var(--text-dark);
+            line-height: 1;
+            margin-bottom: 24px;
+            display: inline-block;
+            animation: neonZoom 1s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+            opacity: 0;
+            transform: scale(0.5);
+        }
+
+        @keyframes neonZoom {
+            0% { opacity: 0; transform: scale(0.5); text-shadow: none; }
+            100% { 
+                opacity: 1; 
+                transform: scale(1); 
+                text-shadow: 0 0 15px rgba(16, 185, 129, 0.4), 0 0 30px rgba(16, 185, 129, 0.2); 
+            }
+        }
+
+        .guarantee {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            gap: 12px;
+            margin-top: 30px;
+            padding-top: 24px;
+            border-top: 1px solid #e5e7eb;
+        }
+
+        /* FAQ */
+        .faq-item {
+            background: white;
+            border-radius: 12px;
+            margin-bottom: 12px;
+            box-shadow: var(--card-shadow);
+        }
+
+        .faq-question {
+            padding: 16px 20px;
+            font-family: 'Outfit', sans-serif;
+            font-weight: 700;
+            font-size: 1rem;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .faq-question svg { flex-shrink: 0; margin-left:12px; transition: 0.3s; }
+
+        .faq-answer {
+            padding: 0 20px 20px;
+            color: var(--text-light);
+            font-size: 0.95rem;
+            display: none;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--text-dark);
+            color: var(--text-light);
+            text-align: center;
+            padding: 30px 20px;
+            font-size: 0.8rem;
+        }
+
+        /* Utility animation */
+        .animate-on-scroll {
+            opacity: 0;
+            transform: translateY(15px);
+            transition: opacity 0.5s ease-out, transform 0.5s ease-out;
+        }
+
+        .animate-on-scroll.is-visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body>
+
+    <div class="mobile-wrapper">
+        <!-- Urgency Top Bar -->
+        <div class="top-bar">
+            ⚠️ Atenção: <span class="highlight-marker">Condição Exclusiva</span> válida somente para as próximas horas.
+        </div>
+
+        <!-- Hero Section -->
+        <section class="hero">
+            <div class="container">
+                <div class="badge">Método Educação Mind</div>
+                <h1>Ajude seu filho a aprender em casa de forma <span class="highlight-marker">Leve e Divertida</span></h1>
+                <p class="subtitle">O fim das noites em claro buscando atividades. Tenha acesso a um acervo pronto e prático para estimular o desenvolvimento do seu filho, ideal para casos de TEA, TDAH, Dislexia e TOD.</p>
+                
+                <ul class="benefits-list">
+                    <li>
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
+                        Acesso imediato a +1.500 atividades divertidas prontas.
+                    </li>
+                    <li>
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
+                        Ferramentas simples para entender os limites da sua criança.
+                    </li>
+                    <li>
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
+                        Economize tempo e aproveite mais a sua família.
+                    </li>
+                </ul>
+
+                <a href="https://www.ggcheckout.com/checkout/v5/xIa8yasN3nKF7lXPsVgI" class="cta-button" onclick="fbq('track', 'InitiateCheckout');">
+                    QUERO AJUDAR MEU FILHO
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+                </a>
+                <div class="security-note">
+                    <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
+                    Compra 100% segura • Via E-mail e WhatsApp
+                </div>
+                
+                <img src="assets/hero_image.png" alt="Mãe e filho aprendendo felizes em casa" class="hero-image animate-on-scroll">
+            </div>
+        </section>
+
+        <!-- Pain Agitation Section -->
+        <section class="agitation bg-gray">
+            <div class="container animate-on-scroll">
+                <h2>A rotina não precisa ser exaustiva e solitária</h2>
+                <div class="grid-3">
+                    <div class="pain-card">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+                        <h4>Falta de Tempo</h4>
+                        <p>Horas da noite pesquisando na internet como ajudar nas tarefas.</p>
+                    </div>
+                    <div class="pain-card">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="7.86 2 16.14 2 22 7.86 22 16.14 16.14 22 7.86 22 2 16.14 2 7.86 7.86 2"></polygon><line x1="12" y1="8" x2="12" y2="12"></line><line x1="12" y1="16" x2="12.01" y2="16"></line></svg>
+                        <h4>Frustração</h4>
+                        <p>A dor de ver seu filho com dificuldade e não ter as ferramentas certas.</p>
+                    </div>
+                    <div class="pain-card">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2" ry="2"></rect><line x1="12" y1="12" x2="12" y2="20"></line><line x1="12" y1="4" x2="12" y2="8"></line></svg>
+                        <h4>Desorganização</h4>
+                        <p>Sentir que professores e terapeutas não se unem no mesmo objetivo.</p>
+                    </div>
+                </div>
+                <div class="pain-conclusion">
+                    Chega de se sentir <span class="highlight-marker">perdida</span>. Tenha o mapa em mãos.
+                </div>
+            </div>
+        </section>
+
+        <!-- Social Proof Marquee -->
+        <div class="marquee-wrapper">
+            <div class="marquee-content" style="animation-duration: 20s;">
+                <div class="marquee-item">
+                    <div class="stars">★★★★★</div>
+                    <p><strong>Renata M.:</strong> "Eu não sabia mais inventar brincadeira pra ele focar. Esse arquivo foi um alívio!"</p>
+                </div>
+                <div class="marquee-item">
+                    <div class="stars">★★★★★</div>
+                    <p><strong>Juliana T.:</strong> "Agora levo as escalas preenchidas e a escola finalmente entendeu o que ele precisa."</p>
+                </div>
+                <div class="marquee-item">
+                    <div class="stars">★★★★★</div>
+                    <p><strong>Aline R.:</strong> "As tarefas parecem brincadeira, ela fica super engajada e eu acompanho em casa."</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Solution / How it works -->
+        <section class="solution">
+            <div class="container animate-on-scroll">
+                <h2 style="text-align: center; margin-bottom: 30px;">4 Passos Simples</h2>
+                
+                <div class="step-block">
+                    <div class="step-number">01</div>
+                    <div>
+                        <h3>Chega no celular</h3>
+                        <p>Receba tudo na hora via e-mail ou WhatsApp logo após a compra.</p>
+                    </div>
+                </div>
+                <div class="step-block">
+                    <div class="step-number">02</div>
+                    <div>
+                        <h3>Acesse Onde Quiser</h3>
+                        <p>Você pode conferir os guias pelo celular e baixar no computador para imprimir.</p>
+                    </div>
+                </div>
+                <div class="step-block">
+                    <div class="step-number">03</div>
+                    <div>
+                        <h3>Imprima em Casa</h3>
+                        <p>Você escolhe as tarefas, imprime o que precisa e começa a agir.</p>
+                    </div>
+                </div>
+                <div class="step-block">
+                    <div class="step-number">04</div>
+                    <div>
+                        <h3>Brinque e Estimule</h3>
+                        <p>Mostre às crianças as brincadeiras usando apenas 15 minutinhos por dia.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Comparison -->
+        <section class="comparison bg-gray">
+            <div class="container animate-on-scroll">
+                <h2 style="text-align: center;">Vantagens Imediatas</h2>
+                <div class="comparison-grid">
+                    <div class="comp-card comp-old">
+                        <h3>❌ Sem o nosso Acervo</h3>
+                        <ul class="comp-list">
+                            <li>Atividades da web não funcionam.</li>
+                            <li>Insegura nas reuniões de escola.</li>
+                            <li>Sentimento de frustração pesado.</li>
+                        </ul>
+                    </div>
+                    <div class="comp-card comp-new">
+                        <h3>✅ Sua Rotina Transformada</h3>
+                        <ul class="comp-list">
+                            <li><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="var(--green-check)" stroke-width="2" stroke-linecap="round"><polyline points="20 6 9 17 4 12"></polyline></svg> Apostilas em mãos rápido.</li>
+                            <li><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="var(--green-check)" stroke-width="2" stroke-linecap="round"><polyline points="20 6 9 17 4 12"></polyline></svg> Muito fácil de divertir seu filho.</li>
+                            <li><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="var(--green-check)" stroke-width="2" stroke-linecap="round"><polyline points="20 6 9 17 4 12"></polyline></svg> Saiba cobrar os direitos dele.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Value Stacking -->
+        <section class="value-stacking">
+            <div class="container animate-on-scroll">
+                <h2 style="text-align: center;">O Que Tem No Pacote?</h2>
+                <div class="modules-grid">
+                    <div class="module-card">
+                        <h4>📁 + 1500 Atividades</h4>
+                        <ul>
+                            <li>O Super Arquivo para tirar eles do tédio.</li>
+                            <li>Estimule habilidades brincando solto.</li>
+                        </ul>
+                    </div>
+                    <div class="module-card">
+                        <h4>📁 Escalas Caseiras</h4>
+                        <ul>
+                            <li>Faça checklists sobre o seu próprio filho.</li>
+                            <li>Entenda traços de TDAH, TEA e Dislexia.</li>
+                        </ul>
+                    </div>
+                    <div class="module-card">
+                        <h4>📁 Fale com a Escola</h4>
+                        <ul>
+                            <li>Modelos de cobrança para entregar na aula.</li>
+                            <li>Garanta que todos estejam na mesma página.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Urgent Bonus -->
+        <section class="bonus-section">
+            <div class="container animate-on-scroll">
+                <h2 style="text-align: center; margin-bottom: 24px;">Bônus Ação Rápida</h2>
+                
+                <div class="bonus-card">
+                    <div class="bonus-icon">
+                        <svg viewBox="0 0 24 24" width="40" height="40" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="7"></circle><polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"></polyline></svg>
+                    </div>
+                    <div>
+                        <h3 style="color: var(--primary-highlight); font-size: 1.2rem;">Guia PEI para Mães</h3>
+                        <p style="color: rgba(255,255,255,0.7); margin-top: 8px; font-size: 0.9rem;">Como assumir as rédeas e saber quais são os direitos legais e educacionais do seu filho perante os professores.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Checkout / Offer -->
+        <section class="checkout bg-gray" id="oferta">
+            <div class="container animate-on-scroll">
+                <div class="checkout-box">
+                    <div class="badge" style="background: rgba(16, 185, 129, 0.15); color: #065f46; margin-bottom: 12px;">MAMÃE RELEVANTE - LIBERADO</div>
+                    <h2 style="font-size: 1.6rem; margin-bottom: 15px;">Desenvolvimento do seu Filho</h2>
+                    
+                    <span class="old-price">Preço Normal: R$ 97,00</span>
+                    <div style="font-size: 1rem; margin-bottom: 5px;">Acesso vitalício por apenas:</div>
+                    <div class="new-price" id="animated-price">R$ 22,90</div>
+                    <br>
+
+                    <a href="https://www.ggcheckout.com/checkout/v5/xIa8yasN3nKF7lXPsVgI" class="cta-button" onclick="fbq('track', 'Purchase', {value: 22.90, currency: 'BRL'});">
+                        COMPRAR AGORA
+                    </a>
+                    
+                    <div style="margin-top: 12px; font-size: 0.8rem; color: var(--text-light);">Pix aprovado libera NA HORA. Sem assinatura.</div>
+
+                    <div class="guarantee">
+                        <svg viewBox="0 0 24 24" width="32" height="32" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path><polyline points="9 12 11 14 15 10"></polyline></svg>
+                        <div>
+                            <strong style="font-size: 0.9rem;">7 Dias de Garantia Maternal</strong>
+                            <div style="font-size: 0.8rem; color: var(--text-light); margin-top:2px;">Solicite reembolso fácil se não gostar!</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- FAQ -->
+        <section class="faq">
+            <div class="container animate-on-scroll">
+                <h2 style="text-align: center; margin-bottom: 30px;">Dúvidas Rápidas</h2>
+                
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFaq(this)">
+                        Vou conseguir abrir no celular?
+                        <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+                    </div>
+                    <div class="faq-answer">
+                        Sim, a maioria dos materiais são arquivos digitais e os links chegam diretamente tanto por e-mail quanto WhatsApp para você baixar onde preferir.
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFaq(this)">
+                        Preciso ser da pedagogia?
+                        <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+                    </div>
+                    <div class="faq-answer">
+                        De maneira alguma. A didática é simples e clara para mães atípicas ou de crianças com dificuldades usarem do dia a dia da casa.
+                    </div>
+                </div>
+                
+                <div style="text-align: center; margin-top: 30px;">
+                    <a href="https://wa.me/5542984149685?text=Ol%C3%A1%2C+tenho+duvidas+sobre+o+combo+de+disleixa+TEA+e+TDAH." target="_blank" style="color: #25D366; font-weight: 600; text-decoration: none; display: inline-flex; align-items: center; justify-content:center; gap: 8px; font-size:0.95rem;">
+                        <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+                        Falar com Suporte (WhatsApp)
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <footer>
+            <div class="container">
+                <p>NÃO é endossado pelo Facebook de nenhuma maneira.</p>
+                <p style="margin-top: 8px;">&copy; 2026 Educação Mind. Com carinho para as famílias.</p>
+            </div>
+        </footer>
+    </div>
+
+    <script>
+        // FAQ Toggle
+        function toggleFaq(element) {
+            const answer = element.nextElementSibling;
+            const icon = element.querySelector('svg');
+            
+            if (answer.style.display === 'block') {
+                answer.style.display = 'none';
+                icon.style.transform = 'rotate(0deg)';
+            } else {
+                answer.style.display = 'block';
+                icon.style.transform = 'rotate(180deg)';
+            }
+        }
+
+        // Scroll Animation Observer
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('is-visible');
+                    
+                    // Reset neon price animation if found
+                    if(entry.target.querySelector('#animated-price')) {
+                        const price = entry.target.querySelector('#animated-price');
+                        price.style.animation = 'none';
+                        price.offsetHeight; 
+                        price.style.animation = null; 
+                    }
+                }
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('.animate-on-scroll').forEach((el) => {
+            observer.observe(el);
+        });
+    </script>
+</body>
+</html>
